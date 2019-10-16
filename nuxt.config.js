@@ -34,6 +34,9 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@/plugins/ability',
+    '@/plugins/axios',
+    { src: '@/plugins/notify', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -46,6 +49,7 @@ module.exports = {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
+    'cookie-universal-nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
@@ -55,6 +59,7 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: "https://nuxt-project-37772.firebaseio.com/quiz"
   },
   /*
   ** vuetify module configuration
@@ -84,7 +89,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
     }
   }
 }

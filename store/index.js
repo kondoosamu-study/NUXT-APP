@@ -16,3 +16,15 @@ export const mutations = {
         state.course = payload
     }
 }
+
+// nuxtServerInitはstore/indexedDB.jsにしか記述できない
+export const actions = {
+    nuxtServerInit({ commit }, { req, app: { $cookies } }) {
+        // req.headers.cookieにはcookieが全て含まれている。
+        if (req.headers.cookie) {
+            if ($cookies.get('token')) {
+                commit('auth/setLoggedIn', true)
+            }
+        }
+    }
+}
